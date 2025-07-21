@@ -1,33 +1,32 @@
 version: 1
-frontend:
-  phases:
-    preBuild:
-      commands:
-        - cd frontend
-        - npm ci
-    build:
-      commands:
-        - npm run build
-  artifacts:
-    baseDirectory: frontend/build
-    files:
-      - '**/*'
-  cache:
-    paths:
-      - frontend/node_modules/**/*
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - cd frontend
+            - npm install
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: frontend/build
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - frontend/node_modules/**
 
-backend:
-  phases:
-    preBuild:
-      commands:
-        - cd backend
-        - echo "Loading env from .env"
-        - export $(cat .env | xargs)
-        - npm ci
-    build:
-      commands:
-        - node server.js
-  cache:
-    paths:
-      - backend/node_modules/**/*
+    backend:
+      phases:
+        preBuild:
+          commands:
+            - cd backend
+            - npm install
+        build:
+          commands:
+            - node server.js
+      cache:
+        paths:
+          - backend/node_modules/**
 
