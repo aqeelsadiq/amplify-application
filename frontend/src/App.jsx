@@ -9,7 +9,7 @@ function App() {
       .then(data => setTime(data.serverTime));
   }, []);
 
-  return <h1>Hello world  {time}</h1>;
+  return <h1>Hello world !! {time}</h1>;
 }
 
 export default App;
