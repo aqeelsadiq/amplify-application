@@ -4,19 +4,19 @@ applications:
       phases:
         preBuild:
           commands:
-            - cd frontend
+            - cd backend/frontend
             - npm ci
         build:
           commands:
             - npm run build
       artifacts:
-        baseDirectory: frontend/build
+        baseDirectory: build
         files:
           - '**/*'
       cache:
         paths:
-          - node_modules/**/*
-    backend:
+          - backend/frontend/node_modules/**/*
+  - backend:
       phases:
         preBuild:
           commands:
@@ -24,12 +24,4 @@ applications:
             - npm ci
         build:
           commands:
-            - |
-              echo "Backend ready"
-      artifacts:
-        baseDirectory: backend
-        files:
-          - '**/*'
-      cache:
-        paths:
-          - node_modules/**/*
+            - echo "Backend ready"
