@@ -21,10 +21,13 @@ backend:
     preBuild:
       commands:
         - cd backend
+        - echo "Loading env from .env"
+        - export $(cat .env | xargs)
         - npm ci
     build:
       commands:
-        - echo "Backend build complete"
+        - node server.js
   cache:
     paths:
       - backend/node_modules/**/*
+
